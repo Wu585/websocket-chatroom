@@ -44,13 +44,13 @@ const ChatRoom = () => {
 
   return (
     <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
-      <ScrollableContainer style={{height: '500px', width: '500px', border: '1px solid  #000', overflow: 'auto'}}>
+      <ScrollableContainer style={{height: '500px', width: '300px', border: '1px solid  #000', overflow: 'auto'}}>
         {messageList.map((message, index) => <li key={index}>
           {message.user} {message.date}
           <p>消息: {message.message}</p>
         </li>)}
       </ScrollableContainer>
-      <div style={{display: 'flex', width: '500px', height: '32px', marginTop: '16px'}}>
+      <div style={{display: 'flex', width: '300px', height: '32px', marginTop: '16px'}}>
         <input type="text" onChange={onChange} value={message}
                style={{marginRight: '16px', width: '100%', flex: 1}}/>
         <button onClick={onSendMessage}>发送消息</button>
