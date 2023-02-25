@@ -1,4 +1,12 @@
-import React, {ChangeEventHandler, CSSProperties, ReactNode, useEffect, useRef, useState} from 'react';
+import React, {
+  ChangeEventHandler,
+  CSSProperties,
+  FormEventHandler,
+  ReactNode,
+  useEffect,
+  useRef,
+  useState
+} from 'react';
 import {useAuth, useWebSocket} from './hooks';
 import dayjs from 'dayjs';
 
@@ -28,7 +36,8 @@ const ChatRoom = () => {
     setMessage(e.target.value);
   };
   const {ws, messageList} = useWebSocket('ws:120.26.164.99:9527');
-  const onSendMessage = () => {
+  const onSendMessage: FormEventHandler = (e) => {
+    e.preventDefault();
     if (!isAuth) window.location.reload();
     if (message.trim().length === 0) {
       return;
@@ -50,11 +59,11 @@ const ChatRoom = () => {
           <p>消息: {message.message}</p>
         </li>)}
       </ScrollableContainer>
-      <div style={{display: 'flex', width: '300px', height: '32px', marginTop: '16px'}}>
+      <form style={{display: 'flex', width: '300px', height: '32px', marginTop: '16px'}} onSubmit={onSendMessage}>
         <input type="text" onChange={onChange} value={message}
                style={{marginRight: '16px', width: '100%', flex: 1}}/>
-        <button onClick={onSendMessage}>发送消息</button>
-      </div>
+        <button type={'submit'}>发送消息</button>
+      </form>
     </div>
   );
 };
