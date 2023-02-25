@@ -27,7 +27,7 @@ const ChatRoom = () => {
   const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setMessage(e.target.value);
   };
-  const {ws, messageList} = useWebSocket('ws:localhost:8888');
+  const {ws, messageList} = useWebSocket('ws:localhost:9527');
   const onSendMessage = () => {
     if (!isAuth) window.location.reload();
     if (message.trim().length === 0) {
